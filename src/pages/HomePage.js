@@ -3,6 +3,8 @@ import PostContext from '../context/PostContext'
 import useAxios from '../utils/useAxios'
 import PostDetail from './PostDetail'
 import { Spinner } from 'react-bootstrap'
+import Navbar2 from '../components/Navbar'
+import Footer from '../components/Footer'
 
 
 export default function HomePage() {
@@ -17,10 +19,13 @@ export default function HomePage() {
 
 
     return (
+        
+       
         <div>
+             <Navbar2/>
             
             {postloading? <Spinner animation="border" />
-            : <div>
+            : <div style={{'white-space': 'pre-line'}}>
                 { posts.map(post => (
                     <PostDetail key= {post.id} post = {post} />
             ))}
@@ -28,7 +33,7 @@ export default function HomePage() {
              }
 {/* {postloading ? <Spinner animation="border" /> : posts.map(post => <PostDetail key={post.id} post={post} />)} */}
             
-            
+        <Footer/>
             
         </div>
     )

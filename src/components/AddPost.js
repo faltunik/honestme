@@ -9,12 +9,12 @@ export default function AddPost() {
 
     return (
         <div>
-            <button type="button" className="btn btn-dark btn-sm mx-3" onClick={() => setModal(true)}>
+            <button type="button" className="btn btn-light btn-sm mx-3" onClick={() => setModal(true)}>
             <i className="ri-add-circle-fill"></i>
             </button>
-            <Modal show={modal} onHide={() => setModal(false)}> {/* () => setModal(false) */}
+            <Modal style={{backgroundColor: 'black'}}  centered show={modal} onHide={() => setModal(false)}> {/* () => setModal(false) */}
                 <Modal.Header closeButton>
-                    <Modal.Title>Add Post</Modal.Title>
+                    <Modal.Title className='text-dark'>Add Post</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={AddPost} >

@@ -9,7 +9,7 @@ export default function Navbar2() {
     let {user, logoutUser} = useContext(AuthContext)
     return (
         <div>
-           <Navbar bg="dark" variant="dark">
+           <Navbar bg="dark" variant="dark" className='shadow-sm'>
                 <Container>
                     
                 {user? (

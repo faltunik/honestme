@@ -49,9 +49,9 @@ export default function AddComment({ notecontent }) {
         
         <i  onClick={() => setModalc(true)} className="ri-chat-3-line"></i>
 
-        <Modal show={modalc} onHide={() => setModalc(false)}> {/* () => setModal(false) */}
+        <Modal show={modalc} style={{backgroundColor: 'black'}}   onHide={() => setModalc(false)}> {/* () => setModal(false) */}
             <Modal.Header closeButton>
-                <Modal.Title>Add Comment</Modal.Title>
+                <Modal.Title className='text-dark'>Add Comment</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <form onSubmit={AddComment} >

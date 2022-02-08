@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import PrivateRoute from './utils/PrivateRoute';
+import LoginRoute from './utils/LoginRoute';
 import MyRoute from './utils/MyRoute';
 import { AuthProvider } from './context/AuthProvider';
 import Header from './components/Header';
@@ -20,12 +21,11 @@ function App() {
       <Router>
       <AuthProvider>
       <PostProvider>
-      <Navbar2/>
       <Alert/>
       <Routes>
       <Route element = {<PrivateRoute> <HomePage /> </PrivateRoute>} path ="/" exact />   
-      <Route element = { <LoginPage />} path ="/login" />
-      <Route element = {<Register />} path = "/register" />
+      <Route element = {<LoginRoute> <LoginPage /> </LoginRoute> } path ="/login" />
+      <Route element = {<LoginRoute> <Register/> </LoginRoute>} path = "/register" />
       <Route element = {<PostLogic />} path = "/posts/:id" />
       <Route element = {<CommentLogic />} path = "/comments/:id" />
       <Route
@@ -37,7 +37,6 @@ function App() {
       }
     />
       </Routes>
-      <Footer />
       </PostProvider>
       </AuthProvider>
       </Router>

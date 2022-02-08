@@ -5,6 +5,8 @@ import PostContext from '../context/PostContext';
 import AddComment from '../components/AddComment';
 import { Link } from 'react-router-dom';
 import { useParams } from "react-router-dom";
+import { RWebShare } from "react-web-share";
+import Header from '../components/Header';
 
 export default function PostLogic() {
     let [notecontent, setNotecontent] = useState([])
@@ -107,7 +109,7 @@ console.time("find")
         console.log('clicked like button')
         let response = await api.get(`like/post/?getid=${params.id}`)
         setIsliked(isliked? false : true)
-        console.log(response.date)
+        console.log(response)
         
     }
 
@@ -118,10 +120,10 @@ console.time("find")
 
     return (
         <div>
+            <Header/>
             
 
-            <div className='border border-dark border-end-0 border-start-0 text-start p-2 ' style={{'fontSize' : '95%'}}>
-            <Link to="/" className=' my-3 mx-3 align-baseline'><i class="ri-arrow-left-line"></i></Link>
+            <div className='border border-dark border-end-0 border-start-0 text-start p-2 ' style={{'fontSize' : '95%', 'white-space': 'pre-line'}} >
             <div className='badge bg-primary text-wrap my-1'>{notecontent.author}</div>
                 <br></br>
                     {notecontent.content} 
@@ -136,8 +138,18 @@ console.time("find")
                 <div className='d-flex justify-content-around mt-1'>
 
                 < AddComment notecontent = {notecontent}/>
-                <i class="ri-thumb-up-line"></i>
-                <i class="ri-share-forward-fill"></i>
+                <i className="ri-thumb-up-line"  onClick={PostLike} ></i>
+               
+                <RWebShare
+                    data={{
+                    text: "Abey, yahan apn apne colg me kya ho rha hai jaan skte hai, Mst Website hai",
+                    url: "http://localhost:3000",
+                    title: "Honest NITRR",
+                    }}
+                    onClick={() => console.log("shared successfully!")}
+                >
+                    <i class="ri-share-forward-fill"></i>
+                </RWebShare>
 
                 </div>
                
@@ -158,7 +170,7 @@ console.time("find")
 
         
 
-         <div className = "mb-5">                
+         <div className = "mb-5" style={{'white-space': 'pre-line'}}>                
          {comments.length === 0 ?     
             'No Comments to display' : comments.map( (comment) => (
              <div key={comment.id}>
